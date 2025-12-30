@@ -1,0 +1,104 @@
+/*
+======================================================
+Data cleaning, validation and standardization 
+======================================================
+*/
+
+-- Check for nulls or duplicates in primary key column cst_id
+--Expectation: No nulls and no duplicates
+
+SELECT cst_id,
+    COUNT(*) AS total_records
+FROM bronze.crm_cust_info
+GROUP BY cst_id
+HAVING COUNT(*) > 1 OR cst_id IS NULL;
+
+-- Data transformaion and cleansing
+SELECT *
+FROM(
+SELECT *,
+    ROW_NUMBER() OVER(PARTITION BY cst_id ORDER BY cst_creationdate DESC) AS flag_last
+FROM bronze.crm_cust_info) t 
+WHERE flag_last = 1 AND cst_id IS NOT NULL;
+
+-- Check for leading or trailing spaces in cst_firstname
+-- Expectations: No results returned
+SELECT cst_firstname
+FROM bronze.crm_cust_info
+WHERE cst_firstname != TRIM(cst_firstname);
+
+-- Transformation to remove leading or trailing spaces in the column
+SELECT 
+    cst_id,
+    cst_key,
+    TRIM(cst_firstname) AS cst_firstname,
+    TRIM(cst_lastname) AS cst_lastname,
+    cst_marital_status,
+    cst_creationdate,
+    cst_gender
+FROM (SELECT *,
+    ROW_NUMBER() OVER(PARTITION BY cst_id ORDER BY cst_creationdate DESC) AS flag_last
+FROM bronze.crm_cust_info) t 
+WHERE flag_last = 1 AND cst_id IS NOT NULL;
+
+--Data standardization and consistency check
+SELECT DISTINCT cst_gender
+FROM bronze.crm_cust_info;
+
+SELECT DISTINCT cst_marital_status
+FROM bronze.crm_cust_info;
+
+
+--Mapping full forms to abbreviations
+SELECT 
+    cst_id,
+    cst_key,
+    TRIM(cst_firstname) AS cst_firstname,
+    TRIM(cst_lastname) AS cst_lastname,
+    CASE WHEN UPPER(cst_marital_status) = 'S' THEN 'Single'
+         WHEN UPPER(cst_marital_status) = 'M' THEN 'Married'
+         ELSE 'Unknown' END AS cst_marital_status,
+    cst_creationdate,
+    CASE WHEN UPPER(cst_gender) = 'F' THEN 'Female'
+         WHEN UPPER(cst_gender) = 'M' THEN 'Male'
+         ELSE 'Unknown' END AS cst_gender
+FROM (SELECT *,
+    ROW_NUMBER() OVER(PARTITION BY cst_id ORDER BY cst_creationdate DESC) AS flag_last
+FROM bronze.crm_cust_info) t 
+WHERE flag_last = 1 AND cst_id IS NOT NULL;
+
+
+/*
+==================================================
+Loading this data into silver.crm_cust_info table
+==================================================
+*/
+
+INSERT INTO silver.crm_cust_info(
+    cst_id,
+    cst_key,
+    cst_firstname,
+    cst_lastname,
+    cst_marital_status,
+    cst_creationdate,
+    cst_gender
+)
+SELECT 
+    cst_id,
+    cst_key,
+    TRIM(cst_firstname) AS cst_firstname,
+    TRIM(cst_lastname) AS cst_lastname,
+    CASE WHEN UPPER(cst_marital_status) = 'S' THEN 'Single'
+         WHEN UPPER(cst_marital_status) = 'M' THEN 'Married'
+         ELSE 'Unknown' END AS cst_marital_status,
+    cst_creationdate,
+    CASE WHEN UPPER(cst_gender) = 'F' THEN 'Female'
+         WHEN UPPER(cst_gender) = 'M' THEN 'Male'
+         ELSE 'Unknown' END AS cst_gender
+FROM (SELECT *,
+    ROW_NUMBER() OVER(PARTITION BY cst_id ORDER BY cst_creationdate DESC) AS flag_last
+FROM bronze.crm_cust_info) t 
+WHERE flag_last = 1 AND cst_id IS NOT NULL;
+
+SELECT * FROM silver.crm_cust_info;
+
