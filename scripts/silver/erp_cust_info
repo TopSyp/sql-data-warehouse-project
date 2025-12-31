@@ -1,0 +1,47 @@
+-- Detect invalid customer IDs
+SELECT
+    CASE WHEN cid LIKE 'NAS%' THEN SUBSTRING(cid, 4, LEN(cid)) 
+    ELSE cid END AS cid
+FROM bronze.erp_cust_az12
+WHERE CASE WHEN cid LIKE 'NAS%' THEN SUBSTRING(cid, 4, LEN(cid)) 
+    ELSE cid END NOT IN (SELECT cst_key FROM silver.crm_cust_info)
+
+-- Detect invalid birth dates
+SELECT DISTINCT bdate
+FROM bronze.erp_cust_az12
+WHERE bdate < '1924-01-01' OR bdate > GETDATE()
+
+-- Clean invalid birth dates
+SELECT 
+    CASE WHEN bdate > GETDATE() THEN NULL
+    ELSE bdate END AS bdate
+FROM bronze.erp_cust_az12
+
+--Detect invalid gender values
+SELECT DISTINCT gen
+FROM bronze.erp_cust_az12
+
+
+-- Standardize gender values
+SELECT gen,
+    CASE 
+        WHEN UPPER(TRIM(gen)) IN ('M', 'MALE') THEN 'Male'
+        WHEN UPPER(TRIM(gen)) IN ('F', 'FEMALE') THEN 'Female'
+        ELSE 'unknown'
+    END 
+FROM bronze.erp_cust_az12
+
+
+-- Final Insert Statement
+INSERT INTO silver.erp_cust_az12 (cid, bdate, gen)
+SELECT  
+    CASE WHEN cid LIKE 'NAS%' THEN SUBSTRING(cid, 4, LEN(cid)) 
+    ELSE cid END AS cid,
+    CASE WHEN bdate > GETDATE() THEN NULL
+    ELSE bdate END AS bdate,
+    CASE 
+        WHEN UPPER(TRIM(gen)) IN ('M', 'MALE') THEN 'Male'
+        WHEN UPPER(TRIM(gen)) IN ('F', 'FEMALE') THEN 'Female'
+        ELSE 'unknown'
+    END AS gen
+FROM bronze.erp_cust_az12
