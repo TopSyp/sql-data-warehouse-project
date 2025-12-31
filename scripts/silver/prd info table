@@ -142,6 +142,7 @@ CREATE TABLE silver.crm_prd_info(
 );
 
 --Inserting transformed data into silver.crm_prd_info
+TRUNCATE TABLE silver.crm_prd_info
 INSERT INTO silver.crm_prd_info (prd_id, prd_key, cat_id, prd_nm, prd_cost, prd_line, prd_start_dt, prd_end_dt)
 SELECT 
  prd_id,
