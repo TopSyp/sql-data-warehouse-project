@@ -73,7 +73,7 @@ WHERE flag_last = 1 AND cst_id IS NOT NULL;
 Loading this data into silver.crm_cust_info table
 ==================================================
 */
-
+TRUNCATE TABLE silver.crm_cust_info
 INSERT INTO silver.crm_cust_info(
     cst_id,
     cst_key,
