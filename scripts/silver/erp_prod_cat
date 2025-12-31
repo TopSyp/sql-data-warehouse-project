@@ -1,0 +1,13 @@
+-- Detect invalid category IDs in bronze table
+SELECT *
+FROM bronze.erp_px_cat_g1v2
+WHERE id NOT IN (SELECT cat_id FROM silver.crm_prd_info);
+
+-- Delete invalid category ID
+DELETE FROM bronze.erp_px_cat_g1v2
+WHERE id ='CO_PD'
+
+-- Final Insert Statement
+INSERT INTO silver.erp_px_cat_g1v2 (id,cat,subcat,maintenance)
+SELECT id,cat,subcat,maintenance
+FROM bronze.erp_px_cat_g1v2;
