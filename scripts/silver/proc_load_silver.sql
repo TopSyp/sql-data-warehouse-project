@@ -126,7 +126,7 @@ PRINT 'Time taken to load erp_px_cat_g1v2: ' + CAST(DATEDIFF(SECOND, @start_time
 
 --- Final Insert Statement
 SET @start_time = GETDATE();
-TRUNCATE TABLE silver.erp_px_cat_g1v2
+TRUNCATE TABLE silver.erp_loc_a101
 INSERT INTO silver.erp_loc_a101 (cid, cntry)
 SELECT 
     REPLACE (cid, '-','') AS cid,
