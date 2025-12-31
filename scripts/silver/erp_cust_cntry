@@ -15,6 +15,7 @@ FROM bronze.erp_loc_a101;
 
 
 --- Final Insert Statement
+TRUNCATE TABLE silver.erp_px_cat_g1v2
 INSERT INTO silver.erp_loc_a101 (cid, cntry)
 SELECT 
     REPLACE (cid, '-','') AS cid,
