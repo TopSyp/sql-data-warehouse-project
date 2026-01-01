@@ -46,15 +46,15 @@ The gold layer is the business level data representation, structured to support 
 
 | Column Name   | 	Data Type	  |  Description |
 |---------------|------------|---------------| 
-order_number	  VARCHAR(50)   	A unique alphanumeric identifier for each sales order (eg : SO54496)
-product_key	    INT           	Surrogate key linking the order to product dimension table
-customer_key	  VARCHAR(50)	    Surrogate key linking the order to customer dimension table
-order_date	    DATE	          The date when the order was placed
-shipping_date	  DATE	          The date when the order was shipped to the customer
-due_date	      DATE	          The date when thenorder payment was due
-sales_amount	  INT	            The total monetary value of the sale for the line item, in which currency units (eg : 25)
-quantity	      INT	            The number of units of the product order for the line item (eg : 1)
-price	          INT	            The price per unit of the product for the line item, in whole currency units (eg : 25)
+|order_number|	  VARCHAR(50)|   	A unique alphanumeric identifier for each sales order (eg : SO54496)|
+|product_key	|    INT      |     	Surrogate key linking the order to product dimension table|
+|customer_key	 | VARCHAR(50)	|    Surrogate key linking the order to customer dimension table|
+|order_date	  |  DATE	       |   The date when the order was placed|
+|shipping_date	|  DATE	        |  The date when the order was shipped to the customer|
+|due_date	    |  DATE	         | The date when thenorder payment was due|
+|sales_amount	|  INT	         |   The total monetary value of the sale for the line item, in which currency units (eg : 25)|
+|quantity	    |  INT	          |  The number of units of the product order for the line item (eg : 1)|
+|price	        |  INT	           | The price per unit of the product for the line item, in whole currency units (eg : 25)|
 
 
 
