@@ -1,4 +1,5 @@
 Data dictionary for gold layer
+===============================
 
 Overview
 --------
