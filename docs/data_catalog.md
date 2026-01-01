@@ -26,24 +26,26 @@ The gold layer is the business level data representation, structured to support 
    > Purpose : Provides information about products and their attributes.
    > Columns :
 
-Column Name   |	Data Type	   |  Description
-product_key   	INT	           Surrogate key uniqely identifying each product record in the product dimension table
-product_id	    INT	           Unique numerical identifier asssigned to each product for internal tracking and referencing
-product_number	VARCHAR(50)	   Alphnumeric identifier representing product, used for categorizing and inventory.
-product_name	  VARCHAR(100)	 Descriptive name of the product including key details such as type, colour, size.
-category_id	    VARCHAR(50)	   A unique identifier for products category, linking to its high level classification.
-category_id	    VARCHAR(50)	   The broader classification of the products (eg : bikes, componenets) to group related items.
-subcategory	    VARCHAR(50)	   A more detailed classification of the product within the category, such as prduct type 
-maintenance	    VARCHAR(10)	   Indicates whether the product requires maintenance (eg : Yes, No)
-cost	          INT	           The cost of base price of the product, measured in monetary units.
-product_line	  VARCHAR(20)	   The specific product line or series to which product belongs (eg : road, mountain)
-start_date	    DATE	         The date when the product became available for sale or use, stored in
+| Column Name   |	Data Type	   |  Description |
+|---------------|------------|---------------| 
+| product_key   |	INT	      |     Surrogate key uniqely identifying each product record in the product dimension table | 
+| product_id	  |  INT	       |    Unique numerical identifier asssigned to each product for internal tracking and referencing |
+| product_number	|VARCHAR(50)	|   Alphnumeric identifier representing product, used for categorizing and inventory. |
+| product_name	  |VARCHAR(100)|	 Descriptive name of the product including key details such as type, colour, size. |
+|category_id	   | VARCHAR(50)|	   A unique identifier for products category, linking to its high level classification. |
+|category_id	    |VARCHAR(50)	|   The broader classification of the products (eg : bikes, componenets) to group related items. |
+|subcategory	    |VARCHAR(50)	 |  A more detailed classification of the product within the category, such as prduct type |
+|maintenance	    |VARCHAR(10)	  | Indicates whether the product requires maintenance (eg : Yes, No) |
+|cost	        |  INT	          | The cost of base price of the product, measured in monetary units. |
+|product_line	|  VARCHAR(20)	  | The specific product line or series to which product belongs (eg : road, mountain) |
+|start_date	   | DATE	        | The date when the product became available for sale or use, stored in |
 
 3. gold.fact_sales
    > Purpose : Store transactional sales data for analytical purpose
    > Columns :
 
-Column Name   | 	Data Type	  |  Description
+| Column Name   | 	Data Type	  |  Description |
+|---------------|------------|---------------| 
 order_number	  VARCHAR(50)   	A unique alphanumeric identifier for each sales order (eg : SO54496)
 product_key	    INT           	Surrogate key linking the order to product dimension table
 customer_key	  VARCHAR(50)	    Surrogate key linking the order to customer dimension table
