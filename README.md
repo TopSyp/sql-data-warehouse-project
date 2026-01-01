@@ -11,21 +11,21 @@ This project involves :
 
 
 This repository is an excellent resources for professionals and students looking to showcase expertise in:
-> SQL development
-> Data architect
-> Data engineering
-> ETL pipelinie developer
-> Data modeling
-> Data analytics
+1. SQL development
+2. Data architect
+3. Data engineering
+4. ETL pipelinie developer
+5. Data modeling
+6. Data analytics
 
 # Important Links and tools :
-> Datasets : Access to project dataset (csv files)
-> SQL Server Express : Lightweight sever for hosting your SQL database
-> SQL Server Management Studio (SSMS) : GUI for managing and interacting with database.
-> Git Respository : Set up GitHub account and repository to manage, version, and collborate on your code efficiently.
-> DrawIO : Design data architecture, models, flows, and diagrams.
-> Notion : All-in-one tool for project management and organization.
-> Notion Project Steps : Access to all project phases and tasks.
+1. Datasets : Access to project dataset (csv files)
+2. SQL Server Express : Lightweight sever for hosting your SQL database
+3. SQL Server Management Studio (SSMS) : GUI for managing and interacting with database.
+4. Git Respository : Set up GitHub account and repository to manage, version, and collborate on your code efficiently.
+5. DrawIO : Design data architecture, models, flows, and diagrams.
+6. Notion : All-in-one tool for project management and organization.
+7. Notion Project Steps : Access to all project phases and tasks.
 
 # Project Requirements
 
@@ -37,19 +37,19 @@ Develop a modern data warehouse using SQL Server to consolidated sales data, ena
 
 # Specifications
 
-> Data Sources : Import data from two source systems (ERP and CRM) provided as CSV files.
-> Data Quality : Cleanse and resolve data quality issue prior to analysis.
-> Integration : Combined both sources into a single user friendly data model designed for analytical queries.
-> Scope : Focus on latest dataset only; historization of data is not required.
-> Documentation : Provied clear documentation of data model to support both business stakeholders and analytics team.
+1. Data Sources : Import data from two source systems (ERP and CRM) provided as CSV files.
+2. Data Quality : Cleanse and resolve data quality issue prior to analysis.
+3. Integration : Combined both sources into a single user friendly data model designed for analytical queries.
+4. Scope : Focus on latest dataset only; historization of data is not required.
+5. Documentation : Provied clear documentation of data model to support both business stakeholders and analytics team.
 
 
 # BI : Analytics and reporting (Data Analytics)
 Develop SQL based analytics to deliver detailed insight into:
 
-> customer behaviour
-> Product performance
-> Sales trend
+1. customer behaviour
+2. Product performance
+3. Sales trend
 
 These insights empower stakeholders with key business metrics, enabling strategic decision-making  
 
