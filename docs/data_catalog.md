@@ -8,17 +8,18 @@ The gold layer is the business level data representation, structured to support 
    > Purpose : Store customer details enriched with demographic and geographic data.
    > Columns :
 
- Column Name	 | Data Type  |	Description
-customer_key  	 INT	         Surrogate key uniqely identifying each customer record in the dimension table
-customer_id	     INT	         Unique numerical identifier asssigned to each customer
-customer_number	 VARCHAR(50)	 Alphnumeric identifier representing customer, used for tracking and referencing
-first_name	     VARCHAR(50)	 The customer's first name, as recorded in the system
-last_name	       VARCHAR(50)	 The customer's last name or family name
-country	         VARCHAR(50)	 The country of residence for the customer (eg: Australia)
-marital_status	 VARCHAR(15)	 The marital status of the customer (eg: Married, Single)
-gender	         VARCHAR(10)	 The gender of the customer (eg: Male, Female, Unknown)
-birth_date	     DATE          The date of birth of the customer, formatted as YYYY-MM-DD (eg: 1971-10-06)
-creation_date	   DATE	         The date and time when the customer record was created in the system
+| Column Name	 | Data Type  |	Description |
+|---------------|------------|---------------| 
+| customer_key  	 | INT	     |    Surrogate key uniqely identifying each customer record in the dimension table |
+| customer_id	    | INT	      |   Unique numerical identifier asssigned to each customer |
+| customer_number	| VARCHAR(50)	 | Alphnumeric identifier representing customer, used for tracking and referencing |
+| first_name	    | VARCHAR(50)	 | The customer's first name, as recorded in the system |
+| last_name	       | VARCHAR(50)	 | The customer's last name or family name |
+| country	        | VARCHAR(50)	| The country of residence for the customer (eg: Australia) | 
+| marital_status	| VARCHAR(15)	 | The marital status of the customer (eg: Married, Single) |
+| gender	        | VARCHAR(10)	 | The gender of the customer (eg: Male, Female, Unknown) |
+| birth_date	   |  DATE          | The date of birth of the customer, formatted as YYYY-MM-DD (eg: 1971-10-06) |
+| creation_date	 |  DATE	        | The date and time when the customer record was created in the system |
 
 
 2. gold.dim_products
